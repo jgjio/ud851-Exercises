@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mSearchBoxEditText = (EditText) mSearchBoxEditText.findViewById(R.id.et_search_box);
-        mUrlDisplayTextView = (TextView) mUrlDisplayTextView.findViewById(R.id.tv_url_display);
-        mSearchResultsTextView = (TextView) mSearchResultsTextView.findViewById(R.id.tv_github_search_results_json);
+        mSearchBoxEditText = (EditText) findViewById(R.id.et_search_box);
+        mUrlDisplayTextView = (TextView) findViewById(R.id.tv_url_display);
+        mSearchResultsTextView = (TextView) findViewById(R.id.tv_github_search_results_json);
     }
 }
