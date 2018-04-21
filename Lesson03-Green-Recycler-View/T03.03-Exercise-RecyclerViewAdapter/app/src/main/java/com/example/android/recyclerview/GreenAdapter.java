@@ -15,7 +15,9 @@
  */
 package com.example.android.recyclerview;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -33,9 +35,10 @@ import android.widget.TextView;
  * contents are green.
  */
 // TODO (4) From GreenAdapter, extend RecyclerView.Adapter<NumberViewHolder>
-public class GreenAdapter {
+public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHolder>{
 
     // TODO (1) Add a private int variable called mNumberItems
+    private int mNumberItems;
 
     // TODO (2) Create a constructor for GreenAdapter that accepts an int as a parameter for numberOfItems
     // TODO (3) Store the numberOfItems parameter in mNumberItems
@@ -47,6 +50,24 @@ public class GreenAdapter {
     // TODO (8) Within onBindViewHolder, call holder.bind and pass in the position
 
     // TODO (9) Override getItemCount and return the number of items to display
+
+    public GreenAdapter(int numberOfItems) {
+        mNumberItems = numberOfItems;
+    }
+
+    @Override
+    public NumberViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+        Context context = viewGroup.getContext();
+        int layoutID = R.layout.number_list_item;
+        LayoutInflater inflater = LayoutInflater.from(context);
+        boolean shouldAttachToParentImmediatly = false;
+
+        View view = inflater.inflate(layoutID, viewGroup, shouldAttachToParentImmediatly);
+
+        NumberViewHolder viewHolder = new NumberViewHolder(view);
+
+        return viewHolder;
+    }
 
     /**
      * Cache of the children views for a list item.
