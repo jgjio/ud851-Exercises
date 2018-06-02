@@ -22,6 +22,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
+import java.net.URI;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -46,13 +48,24 @@ public class MainActivity extends AppCompatActivity {
      * a map to the location represented by the variable addressString using implicit Intents.
      *
      * @param v Button that was clicked.
+     *
      */
     public void onClickOpenAddressButton(View v) {
-        // TODO (5) Store an address in a String
+        String effielTowerAddress = "Champ de Mars, 5 Avenue Anatole France, 75007 Paris, France";
 
-        // TODO (6) Use Uri.Builder with the appropriate scheme and query to form the Uri for the address
+        // Encoded Geo URI would look something like this;
+        // geo:0,0?q=Champ+de+Mars%2C+5+Avenue+Anatole+France%2C+75007+Paris%2CFrance?z=11
 
-        // TODO (7) Replace the Toast with a call to showMap, passing in the Uri from the previous step
+        Uri.Builder builder = new Uri.Builder();
+
+        builder.scheme("geo")
+                .appendPath("0,0")
+                .appendQueryParameter("q", effielTowerAddress);
+
+        Uri addressURI = builder.build();
+
+        showMap(addressURI);
+
         Toast.makeText(this, "TODO: Open a map when this button is clicked", Toast.LENGTH_SHORT).show();
     }
 
@@ -111,14 +124,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-    // TODO (1) Create a method called showMap with a Uri as the single parameter
-    // Do steps 2 - 4 within the showMap method
-        // TODO (2) Create an Intent with action type, Intent.ACTION_VIEW
-
-        // TODO (3) Set the data of the Intent to the Uri passed into this method
-
-        // TODO (4) Verify that this Intent can be launched and then call startActivity
+    public void showMap(Uri geoLocation) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(geoLocation);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
 
 
 }
