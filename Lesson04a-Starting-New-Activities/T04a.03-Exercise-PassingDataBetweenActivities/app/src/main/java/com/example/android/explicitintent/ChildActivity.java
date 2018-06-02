@@ -32,7 +32,7 @@ public class ChildActivity extends AppCompatActivity {
 
         /* Typical usage of findViewById... */
         mDisplayText = (TextView) findViewById(R.id.tv_display);
-        
+
         Intent intentThatStartedThisActivity = getIntent();
 
         if (intentThatStartedThisActivity.hasExtra(Intent.EXTRA_TEXT)) {
